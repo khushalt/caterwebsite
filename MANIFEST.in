@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include catertrade *.css
+recursive-include catertrade *.csv
+recursive-include catertrade *.html
+recursive-include catertrade *.ico
+recursive-include catertrade *.js
+recursive-include catertrade *.json
+recursive-include catertrade *.md
+recursive-include catertrade *.png
+recursive-include catertrade *.py
+recursive-include catertrade *.svg
+recursive-include catertrade *.txt
+recursive-exclude catertrade *.pyc

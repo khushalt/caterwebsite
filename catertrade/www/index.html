@@ -1,0 +1,390 @@
+
+{% block head%}
+		{%- block style %}
+			
+		<link type="text/css" rel="stylesheet" href="{{ link|abs_url }}">
+
+		<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="/assets/catertrade/css/bootstrap.min.css" />
+
+		<!-- Slick -->
+		<link type="text/css" rel="stylesheet" href="/assets/catertrade/css/slick.css" />
+		<link type="text/css" rel="stylesheet" href="/assets/catertrade/css/slick-theme.css" />
+
+		<!-- nouislider -->
+		<link type="text/css" rel="stylesheet" href="/assets/catertrade/css/nouislider.min.css" />
+
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="/assets/catertrade/css/font-awesome.min.css">
+
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="/assets/catertrade/css/style.css" />
+		{%- endblock -%}
+	
+    <script>
+		window.frappe = {};
+		frappe.ready_events = [];
+		frappe.ready = function(fn) {
+			frappe.ready_events.push(fn);
+		}
+		window.dev_server = {{ dev_server }};
+    </script>
+{% endblock %}
+{% block navbar %}
+	{% include "catertrade/templates/includes/navbar.html" %}
+{% endblock %}
+<body>
+{% block page_content %}
+
+
+	<!-- HOME -->
+	<div id="home">
+		<!-- container -->
+		<div class="container">
+			<!-- home wrap -->
+			<div class="home-wrap">
+				<!-- home slick -->
+				<div id="home-slick">
+					<!-- banner -->
+					{% for banner in banners%}
+					<div class="banner banner-1">
+						<img src="{{banner.attach_image_5}}" alt="">
+						<div class="banner-caption text-center">
+							<h1>{{ banner.heading }}</h1>
+							<h3 class="white-color font-weak">{{ banner.description }}</h3>
+							<a href="{{ banner.item_group_route }}" class="primary-btn">Shop Now</a>
+						</div>
+					</div>
+					{% endfor %}
+					<!-- /banner -->
+				</div>
+				<!-- /home slick -->
+			</div>
+			<!-- /home wrap -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /HOME -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				{% for banner_child in banner_section %}
+				<!-- banner -->
+				<div class="col-md-4 col-sm-6">
+					<a class="banner banner-1" href="{{ banner_child.item_route }}">
+						<img src="{{ banner_child.attach_image_5 }}" alt="">
+						<div class="banner-caption text-center">
+							<h2 class="white-color">{{ banner_child.heading }}</h2>
+						</div>
+					</a>
+				</div>
+				<!-- /banner -->
+				{% endfor %}
+				<!-- banner -->
+				<!-- <div class="col-md-4 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src="/assets/catertrade/img/banner11.jpg" alt="">
+						<div class="banner-caption text-center">
+							<h2 class="white-color">NEW COLLECTION</h2>
+						</div>
+					</a>
+				</div>-->
+				<!-- /banner -->
+
+				<!-- banner -->
+				<!--<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3">
+					<a class="banner banner-1" href="#">
+						<img src="/assets/catertrade/img/banner12.jpg" alt="">
+						<div class="banner-caption text-center">
+							<h2 class="white-color">NEW COLLECTION</h2>
+						</div>
+					</a>
+				</div>-->
+				<!-- /banner -->
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- section-title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">Deals Of The Day</h2>
+						<div class="pull-right">
+							<div class="product-slick-dots-1 custom-dots"></div>
+						</div>
+					</div>
+				</div>
+				<!-- /section-title -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="banner banner-2">
+						<img src="{{ left_banners[0].attach_image_5 }}" alt="">
+						<div class="banner-caption">
+							<h2 class="white-color">{{ left_banners[0].heading }}</h2>
+							<a href="{{ left_banners[0].left_item_group_mid_route }}" class="primary-btn">Shop Now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /banner -->
+
+				<!-- Product Slick -->
+				<div class="col-md-9 col-sm-6 col-xs-6">
+					<div class="row">
+						<div id="product-slick-1" class="product-slick">
+							<!-- Product Single -->
+							{% for deal in deals%}
+							<div class="product product-single">
+								<div class="product-thumb">
+									<img {% if deal.thumbnail %} src="{{ deal.thumbnail }}" {% else %} src="/files/product-placeholder.jpg" {% endif %} alt="">
+								</div>
+								<div class="product-body">
+									<h2 class="product-name"><a href="{{ deal.route }}">{{ deal.item_name }}</a></h2>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<!-- /Product Slick -->
+			</div>
+			<!-- /row -->
+
+			<!-- row -->
+			<div class="row">
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">Featured Products</h2>
+						<div class="pull-right">
+							<div class="product-slick-dots-2 custom-dots">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- section title -->
+
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="banner banner-2">
+						<img src="{{ left_banners[1].attach_image_5 }}" alt="">
+						<div class="banner-caption">
+							<h2 class="white-color">{{ left_banners[1].heading }}</h2>
+							<a href="{{ left_banners[1].left_item_group_mid_route }}" class="primary-btn">Shop Now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /banner -->
+
+				<!-- Product Slick -->
+				<div class="col-md-9 col-sm-6 col-xs-6">
+					<div class="row">
+						<div id="product-slick-2" class="product-slick">
+							<!-- Product Single -->
+							{% for products in featured %}
+							<div class="product product-single">
+								<div class="product-thumb">
+									<img {% if products.thumbnail %} src="{{ products.thumbnail }}" {% else %} src="/files/product-placeholder.jpg" {% endif %} alt="">
+								</div>
+								<div class="product-body">
+									<h2 class="product-name"><a href="{{ products.route }}">{{ products.item_name }}</a></h2>
+								</div>
+							</div>
+							{% endfor %}
+							<!-- /Product Single -->
+
+						</div>
+					</div>
+				</div>
+				<!-- /Product Slick -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<!-- section -->
+	<div class="section section-grey">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- banner -->
+				<div class="col-md-8">
+					<div class="banner banner-1">
+						<img src="{{ mid_page_left_banner.mid_page_left_banner }}" alt="">
+						<div class="banner-caption text-center">
+							<h1 class="primary-color">{{ mid_page_left_banner.heading }}<br><span class="white-color font-weak">{{ mid_page_left_banner.description }}</span></h1>
+							<a href="{{ mid_page_left_banner.left_banner_route }}" class="primary-btn">Shop Now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /banner -->
+				{% for mid_banner in mid_page_banners %}
+				<!-- banner -->
+				<div class="col-md-4 col-sm-6">
+					<a class="banner banner-1" href="{{ mid_banner.item_group_mid_route }}">
+						<img src="{{ mid_banner.attach_image_5 }}" alt="">
+						<div class="banner-caption text-center">
+							<h2 class="white-color">{{ mid_banner.heading }}</h2>
+						</div>
+					</a>
+				</div>
+				<!-- /banner -->
+				{% endfor %}
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">Latest Products</h2>
+					</div>
+				</div>
+				<!-- section title -->
+
+				{% for product in latest%}
+				<!-- Product Single -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							<img {% if product.thumbnail %} src="{{ product.thumbnail }}" {% else %} src="/files/product-placeholder.jpg" {% endif %} alt="">
+						</div>
+						<div class="product-body">
+							<h2 class="product-name"><a href="{{ product.route }}">{{ product.item_name }}</a></h2>
+						</div>
+					</div>
+				</div>
+				<!-- /Product Single -->
+				{% endfor %}
+			</div>
+			<!-- /row -->
+
+			<!-- row -->
+			<div class="row">
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="banner banner-2">
+						<img src="{{ left_banners[2].attach_image_5 }}" alt="">
+						<div class="banner-caption">
+							<h2 class="white-color">{{ left_banners[2].heading }}</h2>
+							<a href="{{ left_banners[2].left_item_group_mid_route }}" class="primary-btn">Shop Now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /banner -->
+				{% for end_product in end %}
+				<!-- Product Single -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							<img {% if end_product.thumbnail %} src="{{ end_product.thumbnail }}" {% else %} src="/files/product-placeholder.jpg" {% endif %}  alt="">
+						</div>
+						<div class="product-body">
+							<h2 class="product-name"><a href="{{ end_product.route }}">{{ end_product.item_name }}</a></h2>
+						</div>
+					</div>
+				</div>
+				<!-- /Product Single -->
+				{% endfor %}
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<!-- FOOTER -->
+	<footer id="footer" class="section section-grey">
+		<!-- container -->
+		<div class="container">
+			<hr>
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<div class="footer-logo">
+							<a class="logo" href="{{ url_prefix }}{{ home_page or "/"}}">
+								<span>{{ brand_html or (frappe.get_hooks("brand_html") or ["Home"])[0] }}</span>
+							</a>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8 text-center">
+					<!-- footer copyright -->
+					<div class="footer-copyright">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</div>
+					<div class="footer-copyright">
+						Website Designed by <a href="#" target="_blank">Lectus Corp</a>
+					</div>
+					<!-- /footer copyright -->
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</footer>
+	<!-- /FOOTER -->
+	{% block base_scripts %}
+	<!-- js should be loaded in body! -->
+	<script src="/assets/catertrade/js/jquery.min.js"></script>
+	<script src="/assets/catertrade/js/bootstrap.min.js"></script>
+	<script src="/assets/catertrade/js/slick.min.js"></script>
+	<script src="/assets/catertrade/js/nouislider.min.js"></script>
+	<script src="/assets/catertrade/js/jquery.zoom.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>
+	<script type="text/javascript" src="/assets/frappe/js/lib/bootstrap.min.js"></script>
+	<script src="/assets/catertrade/js/main.js"></script>
+	<script type="text/javascript" src="/assets/js/frappe-web.min.js"></script>
+	{% endblock %}
+    {%- if js_globals is defined %}
+    <script>
+    {%- for key, value in js_globals.iteritems() %}
+    window.{{ key }} = "{{ value[0] }}";
+    {%- endfor -%}
+    </script>
+    {% endif -%}
+	{%- for link in web_include_js %}
+	<script type="text/javascript" src="{{ link|abs_url }}"></script>
+	{%- endfor -%}
+    {%- block script %}{%- endblock %}
+	<!-- csrf_token -->
+    {%- block body_include %}{{ body_include or "" }}{% endblock -%}
+{% endblock %}
+
+</body>
+
+
+{% block sidebar %}{% endblock %}
